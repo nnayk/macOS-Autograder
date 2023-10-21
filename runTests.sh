@@ -1,3 +1,4 @@
+# ls ./Issues/*
 for STUDENT in ./Submissions/*;
 do
 NAME=$(basename ${STUDENT})
@@ -6,7 +7,9 @@ echo "****************************************************" > $OUTPUT
 echo "****************************************************" >> $OUTPUT
 echo "Starting tests for "$NAME >> $OUTPUT
 cp ./TestFiles/* $STUDENT
-python3 ./$STUDENT/sep_chain_ht_acc_tests.py >> $OUTPUT 2>&1
+timeout 5 python3 ./$STUDENT/perm_lex_acceptance_tests.py >> $OUTPUT 2>&1
+timeout 5 python3 ./$STUDENT/rec_list_acceptance_tests.py >> $OUTPUT 2>&1
+timeout 5 python3 ./$STUDENT/bears_acceptance_tests.py >> $OUTPUT 2>&1
 echo "" >> $OUTPUT #new line
 echo "Finished tests for "$NAME >> $OUTPUT
 echo "****************************************************" >> $OUTPUT
